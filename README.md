@@ -2,7 +2,7 @@
 
 Dibsy lets you create and share lists, and call dibs on items in those lists.
 
-## Notes &amp; Resources
+## Development Notes &amp; Resources
 - [Configuring Ruby 1.9.3-p0 and Rails 3.1.3 with RVM](http://railsapps.github.com/installing-rails-3-1.html)
   - Using [Ruby 1.9.3 p0](http://www.ruby-lang.org/en/downloads/) (Recommended as of Tue 10, Jan 2012)
   - Using [Rubygems 1.8.15](https://rubygems.org/gems/rubygems-update) (Recommended as of Tue 10, Jan 2012)

@@ -1,0 +1,29 @@
+<% if signed_in? %>
+  <h1>Hi, <%= current_user.name %>!</h1>
+  <% if current_user.lists.any? %>
+  <h2>You've got <%= @current_user.lists.count %> lists:</h2>
+    <ul>
+      <% current_user.lists.each do |list| %>
+      <li><%= link_to list.name, show_list_path %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= link_to 'Create a new list.', new_list_path %>
+  <%= link_to 'Sign out.', sign_out_path %>
+<% else %>
+<h1>Sign In!</h1>
+<ul>
+  <li>
+    <a href="/auth/twitter" class="auth_provider">
+      <%= image_tag "authbuttons/png/twitter_32.png", size: "32x32", alt: "Twitter" %>
+      Twitter
+    </a>
+  </li>
+  <li>
+    <a href="/auth/facebook" class="auth_provider">
+      <%= image_tag "authbuttons/png/facebook_32.png", size: "32x32", alt: "Facebook" %>
+      Facebook
+    </a>
+  </li>
+</ul>
+<% end %>
