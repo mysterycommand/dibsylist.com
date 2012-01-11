@@ -5,7 +5,21 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+# gem 'mysql2'
+
+
+
+# Setup for Heroku
+# Based on: http://railsapps.github.com/rails-heroku-tutorial.html
+group :development, :test do
+  gem 'mysql2'
+end
+group :production do
+  gem 'pg'
+end
+gem 'thin'
+gem 'heroku', '2.18.1'
+
 
 
 # Gems used only for assets and not required
