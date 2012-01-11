@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_filter :find_list
+  
   # GET /items
   # GET /items.json
   def index
@@ -41,13 +43,14 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
+    @item.list = @list
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item.list, notice: 'Item was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
       else
-        format.html { render action: "new" }
+        format.html { render "lists/show" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
@@ -60,7 +63,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to @item.list, notice: 'Item was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -76,8 +79,14 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to items_url }
+      format.html { redirect_to @list, notice: 'Item was successfully removed.' }
       format.json { head :ok }
     end
+  end
+  
+  private
+  
+  def find_list
+    @list = List.find(params[:list_id])
   end
 end

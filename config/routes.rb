@@ -1,17 +1,17 @@
 Dibsy::Application.routes.draw do
   root :to => "sessions#new"
+  
+  resources :users
+
+  resources :lists do
+    resources :items
+  end
 
   match "auth/:provider/callback", :to => "sessions#create"
   match "auth/failure", :to  => "sessions#failure"
   match "sign-out",
     :to  => "sessions#destroy",
     :as => "sign_out"
-  
-  resources :users
-  resources :lists do
-    resources :items
-  end
-  
 end
 
 

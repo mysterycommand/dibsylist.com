@@ -1,10 +1,15 @@
 <% if signed_in? %>
   <h1>Hi, <%= current_user.name %>!</h1>
   <% if current_user.lists.any? %>
-  <h2>You've got <%= @current_user.lists.count %> lists:</h2>
+  <h2>You've got <%= pluralize(current_user.lists.count, "list") %>:</h2>
     <ul>
       <% current_user.lists.each do |list| %>
-      <li><%= link_to list.name, show_list_path %></li>
+      <li>
+        <%= link_to list.title, list %> (<%= list.items.count %> items) |
+        <%= link_to 'Remove List', list, confirm: 'Are you sure?', method: :delete %>
+        <br />
+        <%= list.created_at.strftime("Created on %d %b, %Y") %>
+      </li>
       <% end %>
     </ul>
   <% end %>

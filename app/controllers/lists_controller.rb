@@ -25,6 +25,7 @@ class ListsController < ApplicationController
   # GET /lists/new.json
   def new
     @list = List.new
+    @list.user = current_user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class ListsController < ApplicationController
   # POST /lists.json
   def create
     @list = List.new(params[:list])
+    @list.user = User.find(params[:list][:user_id])
 
     respond_to do |format|
       if @list.save
@@ -76,7 +78,7 @@ class ListsController < ApplicationController
     @list.destroy
 
     respond_to do |format|
-      format.html { redirect_to lists_url }
+      format.html { redirect_to root_url }
       format.json { head :ok }
     end
   end

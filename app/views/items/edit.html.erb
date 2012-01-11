@@ -1,6 +1,22 @@
-<h1>Editing item</h1>
+<p id="notice"><%= notice %></p>
 
-<%= render 'form' %>
+<header>
+  <h1><%= @list.title %></h1>
+  <em>created by <%= @list.user.name %></em>
+</header>
 
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+<ul>
+  <% @list.items.each do |item| %>
+    <% if @item == item %>
+      <li><%= render 'form' %></li>
+    <% else %>
+      <li>
+        <%= link_to item.label, edit_list_item_path(@list, item) %> |
+        <%= link_to 'Remove Item', list_item_path(@list, item), confirm: 'Are you sure?', method: :delete %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', root_url %>
