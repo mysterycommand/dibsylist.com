@@ -9,4 +9,7 @@ Dibsy lets you create and share lists, and call dibs on items in those lists.
   - Using [Rake 0.9.2.2](http://rubygems.org/gems/rake) (Recommended as of Tue 10, Jan 2012)
   - Using [Rails 3.1.3](http://rubygems.org/gems/rails) (Recommended as of Tue 10, Jan 2012)
   - Using [RVM 1.8](http://beginrescueend.com/)
+- Deployed to Heroku following instructions [here](http://railsapps.github.com/rails-heroku-tutorial.html).
+  - At first it didn't work. Looks like Heroku wasn't precompiling assets, and the missing resources was causing a 500 error? Anyway, precompile locally with ``RAILS_ENV=production bundle exec rake assets:precompile`` … and then pushed that up to Heroku, and it seems to be working.
+  - 
 
