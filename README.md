@@ -11,5 +11,9 @@ Dibsy lets you create and share lists, and call dibs on items in those lists.
   - Using [RVM 1.8](http://beginrescueend.com/)
 - Deployed to Heroku following instructions [here](http://railsapps.github.com/rails-heroku-tutorial.html).
   - At first it didn't work. Looks like Heroku wasn't precompiling assets, and the missing resources was causing a 500 error? Anyway, precompile locally with ``RAILS_ENV=production bundle exec rake assets:precompile`` … and then pushed that up to Heroku, and it seems to be working.
-  - 
+    - Check it out at [http://dibsylist.herokuapp.com](dibsylist.herokuapp.com)!
+  - Got basic OmniAuth (with Twitter and Facebook) working. Inspired by these:
+    - [RailsApps/rails3-mongoid-omniauth](https://github.com/RailsApps/rails3-mongoid-omniauth)
+    - [RailsCast - e241 - Simple OmniAuth](http://railscasts.com/episodes/241-simple-omniauth)
+    - I am not using MongoDB or Mongoid, and I am allowing multiple auths per user.
 
