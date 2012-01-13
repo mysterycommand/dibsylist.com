@@ -4,34 +4,37 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @items }
-    end
+    redirect_to @list
+    # @items = Item.all
+    # 
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @items }
+    # end
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @item }
-    end
+    redirect_to @list
+    # @item = Item.find(params[:id])
+    # 
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @item }
+    # end
   end
 
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Item.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @item }
-    end
+    redirect_to @list
+    # @item = Item.new
+    # 
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render json: @item }
+    # end
   end
 
   # GET /items/1/edit
