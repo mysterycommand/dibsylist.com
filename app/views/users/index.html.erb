@@ -2,6 +2,9 @@
 
 <table>
   <tr>
+    <th id="user_name"></th>
+    <th id="user_email"></th>
+    <th id="user_auths"></th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +12,15 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td headers="user_name"><%= user.name %></td>
+    <td headers="user_email"><%= mail_to user.email, user.email %></td>
+    <td headers="user_auths">
+      <ul>
+        <% user.auths.each do |auth| %>
+        <li><%= auth.provider.capitalize %></li>
+        <% end %>
+      </ul>
+    </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
@@ -18,4 +30,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<!-- <%= link_to 'New User', new_user_path %> -->
