@@ -13,12 +13,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+    redirect_to 'mailto:' + User.find(params[:id]).email
+    # @user = User.find(params[:id])
+    # 
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @user }
+    # end
   end
 
   # GET /users/new
@@ -29,7 +30,6 @@ class UsersController < ApplicationController
     else
       redirect_to root_url, :notice => 'Please sign in with Twitter or Facebook.'
     end
-
     # @user = User.new
     # 
     # respond_to do |format|
@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    redirect_to root_url, :notice => 'That\'s not your account!' and return if @user != current_user
   end
 
   # POST /users
@@ -85,7 +86,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_url, notice: 'User was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -98,6 +99,8 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
+    redirect_to root_url, :notice => 'That\'s not your account!' and return if @user != current_user
+    
     @user.destroy
 
     respond_to do |format|
